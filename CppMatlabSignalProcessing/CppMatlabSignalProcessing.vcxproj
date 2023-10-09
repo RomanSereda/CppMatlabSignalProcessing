@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\PhaseSignalGen\PhaseSignalGen.cpp" />
+    <ClCompile Include="..\PhaseSignalPlot\PhaseSignalPlot.cpp" />
     <ClCompile Include="CppMatlabSignalProcessing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h" />
+    <ClInclude Include="..\PhaseSignalPlot\PhaseSignalPlot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
