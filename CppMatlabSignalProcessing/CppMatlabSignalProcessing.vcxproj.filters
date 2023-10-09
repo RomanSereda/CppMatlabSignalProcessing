@@ -13,10 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="PhaseSignalGen">
+      <UniqueIdentifier>{4310b053-a928-438b-ac7b-c2054223c59b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppMatlabSignalProcessing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\PhaseSignalGen\PhaseSignalGen.cpp">
+      <Filter>PhaseSignalGen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
+      <Filter>PhaseSignalGen</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
