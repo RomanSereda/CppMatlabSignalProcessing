@@ -1,0 +1,8 @@
+LIBRARY PlotView
+EXPORTS
+PlotViewInitialize
+PlotViewInitializeWithHandlers
+PlotViewTerminate
+PlotViewPrintStackTrace
+mlxPlotView
+

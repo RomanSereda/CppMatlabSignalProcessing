@@ -1,9 +1,10 @@
 #include <iostream>
 #include "../PhaseSignalGen/PhaseSignalGen.h"
-#include "../PhaseSignalPlot/PhaseSignalPlot.h"
+#include "../PlotView/PlotView.h"
 #pragma comment(lib, "mclmcrrt.lib")
 #pragma comment(lib, "../PhaseSignalGen/PhaseSignalGen.lib")
 #pragma comment(lib, "../PhaseSignalPlot/PhaseSignalPlot.lib")
+#pragma comment(lib, "../PlotView/PlotView.lib")
 
 int main()
 {
@@ -19,7 +20,7 @@ int main()
 		return -1;
 	}
 
-	if (!PhaseSignalPlotInitialize()) {
+	if (!PlotViewInitialize()) {
 		std::cerr << "could not initialize the library properly" << std::endl;
 		std::cin.get();
 		return -1;
@@ -36,10 +37,10 @@ int main()
 	std::unique_ptr<double[]> sig_results = std::make_unique<double[]>(sig_size);;
 	sig.GetData(sig_results.get(), sig_size);
 		
-
+	PlotView(t, sig);
 
 	system("pause");
-	PhaseSignalPlotTerminate();
+	PlotViewTerminate();
 	PhaseSignalGenTerminate();
 	if (!mclTerminateApplication()) {
 		std::cerr << "unexpected error during termination" << std::endl;

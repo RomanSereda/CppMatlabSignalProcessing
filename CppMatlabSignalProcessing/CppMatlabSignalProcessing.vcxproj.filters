@@ -21,5 +21,8 @@
     <ClInclude Include="..\PhaseSignalPlot\PhaseSignalPlot.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\PlotView\PlotView.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
