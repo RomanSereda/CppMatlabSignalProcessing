@@ -3,8 +3,9 @@
 #include "../PlotView/PlotView.h"
 #pragma comment(lib, "mclmcrrt.lib")
 #pragma comment(lib, "../PhaseSignalGen/PhaseSignalGen.lib")
-#pragma comment(lib, "../PhaseSignalPlot/PhaseSignalPlot.lib")
 #pragma comment(lib, "../PlotView/PlotView.lib")
+
+#include "Solver.h"
 
 int main()
 {
@@ -26,18 +27,23 @@ int main()
 		return -1;
 	}
 
-	mwArray t, sig;
-	PhaseSignalGen(2, t, sig);
+	mwArray t, imag_sig, real_sig, pulse_len, pulse_count;
+	PhaseSignalGen(5, t, imag_sig, real_sig, pulse_len, pulse_count);
 
-	auto t_size = t.NumberOfElements();
-	std::unique_ptr<double[]> t_results = std::make_unique<double[]>(t_size);;
-	t.GetData(t_results.get(), t_size);
+	auto __memcpy = [](const mwArray& arr) -> auto {
+		auto size = arr.NumberOfElements();
+		auto results = std::make_unique<double[]>(size);
+		arr.GetData(results.get(), size);
+		return std::move(results);
+	};
 
-	auto sig_size = sig.NumberOfElements();
-	std::unique_ptr<double[]> sig_results = std::make_unique<double[]>(sig_size);;
-	sig.GetData(sig_results.get(), sig_size);
-		
-	PlotView(t, sig);
+	auto mem_t           = __memcpy(t);
+	auto mem_imag_sig    = __memcpy(imag_sig);
+	auto mem_real_sig    = __memcpy(real_sig);
+	auto mem_pulse_len   = __memcpy(pulse_len);
+	auto mem_pulse_count = __memcpy(pulse_count);
+
+	Solver solver(mem_t, mem_imag_sig, mem_real_sig, mem_pulse_len[0], mem_pulse_count[0]);
 
 	system("pause");
 	PlotViewTerminate();

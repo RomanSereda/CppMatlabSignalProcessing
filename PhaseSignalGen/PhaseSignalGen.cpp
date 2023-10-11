@@ -1,6 +1,6 @@
 //
 // MATLAB Compiler: 8.6 (R2023a)
-// Date: Tue Oct 10 21:47:03 2023
+// Date: Wed Oct 11 22:38:26 2023
 // Arguments:
 // "-B""macro_default""-W""cpplib:PhaseSignalGen,all""-T""link:lib""PhaseSignalG
 // en.mlx"
@@ -143,8 +143,9 @@ bool MW_CALL_CONV mlxPhaseSignalGen(int nlhs, mxArray *plhs[], int nrhs, mxArray
 }
 
 LIB_PhaseSignalGen_CPP_API 
-void MW_CALL_CONV PhaseSignalGen(int nargout, mwArray& t, mwArray& sig)
+void MW_CALL_CONV PhaseSignalGen(int nargout, mwArray& t, mwArray& imag_sig, mwArray& 
+                                 real_sig, mwArray& pulse_len, mwArray& pulse_count)
 {
-    mclcppMlfFeval(_mcr_inst, "PhaseSignalGen", nargout, 2, 0, &t, &sig);
+    mclcppMlfFeval(_mcr_inst, "PhaseSignalGen", nargout, 5, 0, &t, &imag_sig, &real_sig, &pulse_len, &pulse_count);
 }
 

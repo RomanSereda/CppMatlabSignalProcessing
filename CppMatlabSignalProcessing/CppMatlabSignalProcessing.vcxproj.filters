@@ -13,15 +13,18 @@
     <ClCompile Include="CppMatlabSignalProcessing.cpp">
       <Filter>Application</Filter>
     </ClCompile>
+    <ClCompile Include="Solver.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\PhaseSignalPlot\PhaseSignalPlot.h">
+    <ClInclude Include="..\PlotView\PlotView.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\PlotView\PlotView.h">
+    <ClInclude Include="Solver.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
