@@ -5,7 +5,7 @@
 #pragma comment(lib, "../PhaseSignalGen/PhaseSignalGen.lib")
 #pragma comment(lib, "../PlotView/PlotView.lib")
 
-#include "Solver.h"
+#include "solver.hpp"
 
 int main()
 {
@@ -44,6 +44,8 @@ int main()
 	auto mem_pulse_count = __memcpy(pulse_count);
 
 	Solver solver(mem_t, mem_imag_sig, mem_real_sig, mem_pulse_len[0], mem_pulse_count[0]);
+
+	solver.compute();
 
 	system("pause");
 	PlotViewTerminate();

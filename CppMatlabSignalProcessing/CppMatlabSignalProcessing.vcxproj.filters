@@ -1,31 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Application">
+    <Filter Include="application">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Headers">
+    <Filter Include="solver">
+      <UniqueIdentifier>{4c431786-d93c-440a-84da-5387f822af69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kalman">
+      <UniqueIdentifier>{e0dff105-862d-424c-b25c-3b6ac8623d14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="matlab">
       <UniqueIdentifier>{4310b053-a928-438b-ac7b-c2054223c59b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CppMatlabSignalProcessing.cpp">
-      <Filter>Application</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>application</Filter>
     </ClCompile>
-    <ClCompile Include="Solver.cpp">
-      <Filter>Application</Filter>
+    <ClCompile Include="solver.cpp">
+      <Filter>solver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
-      <Filter>Headers</Filter>
+      <Filter>matlab</Filter>
     </ClInclude>
     <ClInclude Include="..\PlotView\PlotView.h">
-      <Filter>Headers</Filter>
+      <Filter>matlab</Filter>
     </ClInclude>
-    <ClInclude Include="Solver.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="solver.hpp">
+      <Filter>solver</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
