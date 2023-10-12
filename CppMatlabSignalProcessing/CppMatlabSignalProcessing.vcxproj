@@ -144,12 +144,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="kalman.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="solver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h" />
     <ClInclude Include="..\PlotView\PlotView.h" />
+    <ClInclude Include="kalman.h" />
     <ClInclude Include="solver.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

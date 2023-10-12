@@ -22,6 +22,9 @@
     <ClCompile Include="solver.cpp">
       <Filter>solver</Filter>
     </ClCompile>
+    <ClCompile Include="kalman.cpp">
+      <Filter>kalman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
@@ -32,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="solver.hpp">
       <Filter>solver</Filter>
+    </ClInclude>
+    <ClInclude Include="kalman.h">
+      <Filter>kalman</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

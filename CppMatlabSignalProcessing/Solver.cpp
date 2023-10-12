@@ -3,7 +3,7 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "Kalman.h"
+#include "kalman.h"
 
 Solver::Solver(const UDPtr& t, const UDPtr& imag_sig, 
 	const UDPtr& real_sig, const int pulse_len, int pulse_count) : mPulseSize(pulse_len)
@@ -26,18 +26,20 @@ Solver::Solver(const UDPtr& t, const UDPtr& imag_sig,
 
 void Solver::compute()
 {
+	
 	for (auto& pulse : mPulses) {
 		pulse.angle = std::make_unique<double[]>(mPulseSize);
+
+		Kalman kalman;
 
 		auto sig = pulse.sig.get();
 		for (size_t i = 0; i < mPulseSize; i++){
 			auto result = std::atan2(mPulses[0].sig[i].imag(), mPulses[0].sig[i].real());
-			pulse.angle[i] = result * 180.0 / M_PI;
+			result = result * 180.0 / M_PI;
+			result = kalman.getAngle(result, 0.02, 0.05 * i);
 
-			std::cout << pulse.angle[i] << " ";
+			std::cout << result << " ";
 		}
 	}
-
-	
 
 }
