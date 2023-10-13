@@ -8,11 +8,11 @@
     <Filter Include="solver">
       <UniqueIdentifier>{4c431786-d93c-440a-84da-5387f822af69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="kalman">
-      <UniqueIdentifier>{e0dff105-862d-424c-b25c-3b6ac8623d14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="matlab">
       <UniqueIdentifier>{4310b053-a928-438b-ac7b-c2054223c59b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="filters">
+      <UniqueIdentifier>{e0dff105-862d-424c-b25c-3b6ac8623d14}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,9 +21,6 @@
     </ClCompile>
     <ClCompile Include="solver.cpp">
       <Filter>solver</Filter>
-    </ClCompile>
-    <ClCompile Include="kalman.cpp">
-      <Filter>kalman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,8 +33,11 @@
     <ClInclude Include="solver.hpp">
       <Filter>solver</Filter>
     </ClInclude>
-    <ClInclude Include="kalman.h">
-      <Filter>kalman</Filter>
+    <ClInclude Include="..\Kalman\kalman.h">
+      <Filter>filters</Filter>
+    </ClInclude>
+    <ClInclude Include="nojitter.h">
+      <Filter>filters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

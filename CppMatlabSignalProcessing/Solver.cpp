@@ -3,12 +3,12 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "kalman.h"
+#include "../Kalman/kalman.h"
+#include "nojitter.h"
 
 Solver::Solver(const UDPtr& t, const UDPtr& imag_sig, 
 	const UDPtr& real_sig, const int pulse_len, int pulse_count) : mPulseSize(pulse_len)
 {
-	
 	for (size_t i = 0; i < pulse_count; i++) 
 	{
 		auto t_values = std::make_unique<double[]>(pulse_len);
@@ -24,21 +24,33 @@ Solver::Solver(const UDPtr& t, const UDPtr& imag_sig,
 	}
 }
 
-void Solver::compute()
+void Solver::compute() 
 {
-	
 	for (auto& pulse : mPulses) {
 		pulse.angle = std::make_unique<double[]>(mPulseSize);
 
-		Kalman kalman;
+		auto angle = [](const std::complex<double>& value) -> auto {
+				auto result = std::atan2(value.imag(), value.real());
+				return result * 180.0 / M_PI;
+			};
 
-		auto sig = pulse.sig.get();
 		for (size_t i = 0; i < mPulseSize; i++){
-			auto result = std::atan2(mPulses[0].sig[i].imag(), mPulses[0].sig[i].real());
-			result = result * 180.0 / M_PI;
-			result = kalman.getAngle(result, 0.02, 0.05 * i);
+			pulse.angle[i] = angle(pulse.sig[i]);
+		}
 
-			std::cout << result << " ";
+		const int running_average_window = 4;
+		const double maximum_angle_value = 180.0;
+		const double jitter_angle_value = maximum_angle_value * 0.95;
+		const int jitter_angle_window = 10;
+
+		NoJitter noJitter(jitter_angle_value, maximum_angle_value, jitter_angle_window);
+		noJitter.compute(pulse.angle.get(), mPulseSize, running_average_window);
+
+		//Kalman kalman(15, 0.5, 0.005, angle(pulse.sig[0]));
+		//auto result = kalman.getFilteredValue();
+
+		for (size_t i = 0; i < mPulseSize; i++) {
+			std::cout << pulse.angle[i] << " ";
 		}
 	}
 
