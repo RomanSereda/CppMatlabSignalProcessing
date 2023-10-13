@@ -38,7 +38,7 @@ void Solver::compute()
 			pulse.angle[i] = angle(pulse.sig[i]);
 		}
 
-		const int running_average_window = 4;
+		const int running_average_window = 3;
 		const double maximum_angle_value = 180.0;
 		const double jitter_angle_value = maximum_angle_value * 0.95;
 		const int jitter_angle_window = 10;
@@ -46,11 +46,9 @@ void Solver::compute()
 		NoJitter noJitter(jitter_angle_value, maximum_angle_value, jitter_angle_window);
 		noJitter.compute(pulse.angle.get(), mPulseSize, running_average_window);
 
-		//Kalman kalman(15, 0.5, 0.005, angle(pulse.sig[0]));
-		//auto result = kalman.getFilteredValue();
-
+		Kalman kalman(0.15, 0.25, 32, angle(pulse.sig[0]));
 		for (size_t i = 0; i < mPulseSize; i++) {
-			std::cout << pulse.angle[i] << " ";
+			pulse.angle[i] = kalman.getFilteredValue(pulse.angle[i]);
 		}
 	}
 
