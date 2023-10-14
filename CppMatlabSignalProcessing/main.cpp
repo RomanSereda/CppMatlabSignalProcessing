@@ -1,11 +1,10 @@
 #include <iostream>
 #include "../PhaseSignalGen/PhaseSignalGen.h"
-#include "../PlotView/PlotView.h"
 #pragma comment(lib, "mclmcrrt.lib")
 #pragma comment(lib, "../PhaseSignalGen/PhaseSignalGen.lib")
-#pragma comment(lib, "../PlotView/PlotView.lib")
 
-#include "solver.hpp"
+#include "solver.h"
+#include "gui.h"
 
 int main()
 {
@@ -16,12 +15,6 @@ int main()
 	}
 
 	if (!PhaseSignalGenInitialize()) {
-		std::cerr << "could not initialize the library properly" << std::endl;
-		std::cin.get();
-		return -1;
-	}
-
-	if (!PlotViewInitialize()) {
 		std::cerr << "could not initialize the library properly" << std::endl;
 		std::cin.get();
 		return -1;
@@ -47,8 +40,9 @@ int main()
 
 	solver.compute();
 
-	system("pause");
-	PlotViewTerminate();
+	Gui gui;
+	gui.run();
+
 	PhaseSignalGenTerminate();
 	if (!mclTerminateApplication()) {
 		std::cerr << "unexpected error during termination" << std::endl;

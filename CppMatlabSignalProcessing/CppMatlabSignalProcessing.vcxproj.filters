@@ -14,6 +14,12 @@
     <Filter Include="filters">
       <UniqueIdentifier>{e0dff105-862d-424c-b25c-3b6ac8623d14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gui">
+      <UniqueIdentifier>{a91dff9f-f1e0-4144-861e-8ab170ae56e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\imgui">
+      <UniqueIdentifier>{c11edbf3-6372-4ff2-8826-68dc3435b63a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -22,12 +28,30 @@
     <ClCompile Include="solver.cpp">
       <Filter>solver</Filter>
     </ClCompile>
+    <ClCompile Include="..\imgui\imgui.cpp">
+      <Filter>gui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_draw.cpp">
+      <Filter>gui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_tables.cpp">
+      <Filter>gui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\imgui_widgets.cpp">
+      <Filter>gui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_glfw.cpp">
+      <Filter>gui\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\imgui\backends\imgui_impl_opengl2.cpp">
+      <Filter>gui\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
       <Filter>matlab</Filter>
     </ClInclude>
-    <ClInclude Include="solver.hpp">
+    <ClInclude Include="solver.h">
       <Filter>solver</Filter>
     </ClInclude>
     <ClInclude Include="..\Kalman\kalman.h">
@@ -35,6 +59,24 @@
     </ClInclude>
     <ClInclude Include="nojitter.h">
       <Filter>filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imconfig.h">
+      <Filter>gui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui.h">
+      <Filter>gui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\imgui_internal.h">
+      <Filter>gui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_glfw.h">
+      <Filter>gui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\imgui\backends\imgui_impl_opengl2.h">
+      <Filter>gui\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui.h">
+      <Filter>gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

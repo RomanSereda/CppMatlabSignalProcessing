@@ -1,4 +1,4 @@
-#include "solver.hpp"
+#include "solver.h"
 #include <iostream>
 
 #define _USE_MATH_DEFINES
