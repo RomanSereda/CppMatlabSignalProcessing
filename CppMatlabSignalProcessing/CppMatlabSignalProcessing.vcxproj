@@ -150,7 +150,6 @@
   <ItemGroup>
     <ClInclude Include="..\Kalman\kalman.h" />
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h" />
-    <ClInclude Include="..\PlotView\PlotView.h" />
     <ClInclude Include="nojitter.h" />
     <ClInclude Include="solver.hpp" />
   </ItemGroup>

@@ -52,4 +52,32 @@ void Solver::compute()
 		}
 	}
 
+	const int missing_part_begin = mPulses[0].t[mPulseSize - 1] + 1;
+	const int missing_part_end = mPulses[1].t[0] - 1;
+
+	const int abscissa_size = mPulseSize * 2 + missing_part_end - missing_part_begin;
+
+	auto abscissa = std::make_unique<double[]>(abscissa_size);
+	const int abscissa_begin = mPulses[0].t[0];
+	for (size_t i = 0; i < abscissa_size; i++) {
+		abscissa[i] = abscissa_begin + i;
+	}
+
+	const int ordinate_size = abscissa_size;
+
+	auto ordinate = std::make_unique<double[]>(ordinate_size);
+	for (size_t i = 0; i < ordinate_size; i++) {
+		ordinate[i] = std::nan(0);
+	}
+
+	for (const auto& pulse : mPulses) {
+		const int pulse_begin = pulse.t[0] - mPulses[0].t[0];
+		for (size_t i = 0; i < mPulseSize; i++) {
+			const int j = i + pulse_begin;
+			if(j < ordinate_size)
+				ordinate[j] = pulse.angle[i];
+		}
+	}
+
+
 }

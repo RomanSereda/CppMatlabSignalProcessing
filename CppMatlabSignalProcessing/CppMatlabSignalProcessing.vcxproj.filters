@@ -27,9 +27,6 @@
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
       <Filter>matlab</Filter>
     </ClInclude>
-    <ClInclude Include="..\PlotView\PlotView.h">
-      <Filter>matlab</Filter>
-    </ClInclude>
     <ClInclude Include="solver.hpp">
       <Filter>solver</Filter>
     </ClInclude>
