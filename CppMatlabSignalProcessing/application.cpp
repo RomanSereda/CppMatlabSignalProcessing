@@ -37,10 +37,9 @@ int main()
 	auto mem_pulse_count = __memcpy(pulse_count);
 
 	Solver solver(mem_t, mem_imag_sig, mem_real_sig, mem_pulse_len[0], mem_pulse_count[0]);
+	auto result = solver.compute();
 
-	solver.compute();
-
-	Gui gui;
+	Gui gui(result);
 	gui.run();
 
 	PhaseSignalGenTerminate();

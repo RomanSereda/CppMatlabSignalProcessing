@@ -22,7 +22,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="application.cpp">
       <Filter>application</Filter>
     </ClCompile>
     <ClCompile Include="solver.cpp">

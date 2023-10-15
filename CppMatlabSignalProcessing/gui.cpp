@@ -1,6 +1,9 @@
 #include "gui.h"
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <cmath>
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
@@ -20,7 +23,7 @@ static void glfw_error_callback(int error, const char* description) {
 
 const ImVec4 ClearColor = ImColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-Gui::Gui() {
+Gui::Gui(const Data& data) : mData(data) {
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit()) exit(1);
 
@@ -56,18 +59,27 @@ void Gui::run() {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-
-
-
+        render();
+       
         ImGui::Render();
         int display_w, display_h;
         glfwGetFramebufferSize(m_glfwWindow, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
         glClearColor(ClearColor.x, ClearColor.y, ClearColor.z, ClearColor.w);
         glClear(GL_COLOR_BUFFER_BIT);
+
         ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
         glfwMakeContextCurrent(m_glfwWindow);
         glfwSwapBuffers(m_glfwWindow);
     }
+}
+
+void Gui::render() {
+
+    ImGui::Begin("Overlay");
+
+
+
+    ImGui::End();
 }
