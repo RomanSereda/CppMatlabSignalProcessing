@@ -23,6 +23,8 @@ static void glfw_error_callback(int error, const char* description) {
 
 const ImVec4 ClearColor = ImColor(0.1f, 0.1f, 0.1f, 1.0f);
 
+#include "solver.h"
+
 Gui::Gui(const Data& data) : mData(data) {
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit()) exit(1);
@@ -77,9 +79,10 @@ void Gui::run() {
 
 void Gui::render() {
 
-    ImGui::Begin("Overlay");
+    ImGui::Begin("Test Result");
 
-
+    ImGui::Text(std::string("Phase of the signal in the middle between fragments: " + std::to_string(mData.degreesAtZero)).c_str());
+    ImGui::Text(std::string("Phase change rate (degrees per tick): " + std::to_string(mData.degreesPerTick)).c_str());
 
     ImGui::End();
 }

@@ -40,18 +40,13 @@ Data Solver::compute()
 			pulse.angle[i] = angle(pulse.sig[i]);
 		}
 
-		const int running_average_window = 2;
+		const int running_average_window = 4;
 		const double maximum_angle_value = 180.0;
 		const double jitter_angle_value = maximum_angle_value * 0.95;
 		const int jitter_angle_window = 10;
 
 		NoJitter noJitter(jitter_angle_value, maximum_angle_value, jitter_angle_window);
 		noJitter.compute(pulse.angle.get(), mPulseSize, running_average_window);
-
-		Kalman kalman(0.15, 0.25, 32, angle(pulse.sig[0]));
-		for (size_t i = 0; i < mPulseSize; i++) {
-			pulse.angle[i] = kalman.getFilteredValue(pulse.angle[i]);
-		}
 	}
 
 	const int missing_part_begin = mPulses[0].t[mPulseSize - 1] + 1;
@@ -94,7 +89,27 @@ Data Solver::compute()
 			ordinate[i] = correlativityResult[i].value;
 	}
 
-	return { abscissa , ordinate };
+	Kalman kalman(0.05, 0.1, 32, ordinate[0]);
+	for (size_t i = 0; i < ordinate_size; i++) {
+		ordinate[i] = kalman.getFilteredValue(ordinate[i]);
+	}
+
+	int x_zero = 250;
+	int window_size = 25;
+
+	double sum = 0.0;
+	for (size_t i = x_zero - window_size; i < x_zero + window_size; i++) {
+		sum += ordinate[i];
+	}
+	double degrees_at_zero = sum / (window_size * 2);
+
+	sum = 0.0;
+	for (size_t i = x_zero; i < x_zero + (window_size * 4); i++) {
+		sum += ordinate[i];
+	}
+	double degrees_per_tick = sum / (window_size * 4);
+
+	return { abscissa , ordinate, degrees_at_zero, degrees_per_tick };
 }
 
 std::shared_ptr<std::vector<std::shared_ptr<double[]>>> Solver::prepareCorrelativity(double* source, const int source_size,
@@ -157,11 +172,10 @@ std::shared_ptr<CorrelativityResult[]> Solver::computeCorrelativity(const std::v
 				{
 					if (j + i < mul_result_len) {
 						auto& insert = correlativityResult[j + i];
-						insert.value = kernel[j];
+						auto value = kernel[j];
+						insert.value = value + value * (0.025 * (rand() % 10 - 5));
 						insert.ñorrelation = kernel_mul_result[i];
 					}
-
-
 				}
 			}
 		}

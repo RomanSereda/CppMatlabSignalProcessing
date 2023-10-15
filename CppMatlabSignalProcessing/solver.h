@@ -14,6 +14,9 @@ struct CorrelativityResult {
 struct Data {
 	std::shared_ptr<double[]> abscissa;
 	std::shared_ptr<double[]> ordinate;
+
+	double degreesAtZero;
+	double degreesPerTick;
 };
 
 class Solver {
