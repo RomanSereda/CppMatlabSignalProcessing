@@ -46,6 +46,12 @@
     <ClCompile Include="..\imgui\backends\imgui_impl_opengl2.cpp">
       <Filter>gui\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="nojitter.cpp">
+      <Filter>filters</Filter>
+    </ClCompile>
+    <ClCompile Include="gui.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PhaseSignalGen\PhaseSignalGen.h">
@@ -78,5 +84,15 @@
     <ClInclude Include="gui.h">
       <Filter>gui</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\imgui\misc\debuggers\imgui.natvis">
+      <Filter>gui\imgui</Filter>
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\imgui\misc\debuggers\imgui.natstepfilter">
+      <Filter>gui\imgui</Filter>
+    </None>
   </ItemGroup>
 </Project>
