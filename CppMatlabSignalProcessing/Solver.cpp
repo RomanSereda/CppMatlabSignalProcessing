@@ -101,14 +101,17 @@ Data Solver::compute()
 	for (size_t i = x_zero - window_size; i < x_zero + window_size; i++) {
 		sum += ordinate[i];
 	}
+	// the average value is calculated, relative to the central point "0"(average from 50 samples)
 	double degrees_at_zero = sum / (window_size * 2);
 
 	sum = 0.0;
 	for (size_t i = x_zero; i < x_zero + (window_size * 4); i++) {
 		sum += ordinate[i];
 	}
+	// the average value is calculated, along the angle of inclination (from 100 samples)
 	double degrees_per_tick = sum / (window_size * 4);
 
+	// SOLUTION IS INCOMPLETE, NEEDS ADDITIONAL SMOOTHING, OPTIMIZATION AND INCREASED NUMBER OF NUCLEI SAMPLING.
 	return { abscissa , ordinate, degrees_at_zero, degrees_per_tick };
 }
 
@@ -167,14 +170,14 @@ std::shared_ptr<CorrelativityResult[]> Solver::computeCorrelativity(const std::v
 
 	auto correlativity_insert = [&](double* kernel, int kernel_len, double* kernel_mul_result) {
 		for (size_t i = 0; i < mul_result_len; i++) {
-			if (std::isnan(correlativityResult[i].ñorrelation) || correlativityResult[i].ñorrelation < kernel_mul_result[i]) {
+			if (std::isnan(correlativityResult[i].Ã±orrelation) || correlativityResult[i].Ã±orrelation < kernel_mul_result[i]) {
 				for (size_t j = 0; j < kernel_len; j++)
 				{
 					if (j + i < mul_result_len) {
 						auto& insert = correlativityResult[j + i];
 						auto value = kernel[j];
 						insert.value = value + value * (0.025 * (rand() % 10 - 5));
-						insert.ñorrelation = kernel_mul_result[i];
+						insert.Ã±orrelation = kernel_mul_result[i];
 					}
 				}
 			}
